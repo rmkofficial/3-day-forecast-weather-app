@@ -172,3 +172,58 @@ h1 {
 .autocomplete-item:hover {
   background-color: #f0f0f0;
 }
+
+@media only screen and (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
+
+  .weather-input {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .current-weather__top,
+  .weather-card {
+    max-width: 100%;
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .autocomplete-container {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  body {
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .weather-input {
+    padding: 15px;
+  }
+
+  .current-weather__top,
+  .weather-card {
+    padding: 15px;
+    margin-right: 0;
+    width: 100%;
+  }
+
+  .weather-card {
+    margin-bottom: 20px;
+  }
+
+  .autocomplete-container {
+    width: 100%;
+  }
+}

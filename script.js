@@ -113,6 +113,11 @@ const showAutocomplete = (cities) => {
         });
         autocompleteContainer.appendChild(option);
     });
+    if (cities.length > 0) {
+        autocompleteContainer.style.display = "block";
+    } else {
+        autocompleteContainer.style.display = "none";
+    }
 };
 
 // Function to clear autocomplete data
@@ -120,8 +125,21 @@ const clearAutocomplete = () => {
     autocompleteContainer.innerHTML = "";
 };
 
+// Function to debounce autocomplete
+const debounce = (func, delay) => {
+    let timeoutId;
+    return (...args) => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+            func(...args);
+        }, delay);
+    };
+};
+
+const debouncedAutoComplete = debounce(autoComplete, 500);
+
 // Event listeners
-cityInput.addEventListener("keyup", autoComplete);
-searchButton.addEventListener("click", getCityCoordinates);
-cityInput.addEventListener("keyup", e => e.key === "Enter" && getCityCoordinates());
+cityInput.addEventListener("keyup", debouncedAutoComplete);
+searchButton.addEventListener("click", debounce(getCityCoordinates, 300));
+cityInput.addEventListener("keyup", e => e.key === "Enter" && debouncedAutoComplete());
 locationButton.addEventListener("click", userLocation);
